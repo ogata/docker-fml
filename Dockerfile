@@ -23,6 +23,7 @@ USER root
 RUN cp -a /etc/postfix/main.cf /etc/postfix/main.cf-000 && \
 postconf -e "mydomain = $envDomainName" && \
 postconf -e 'allow_mail_to_commands = alias, forward, include' && \
+postconf -e 'alias_maps = hash:/etc/aliases, hash:/var/spool/ml/etc/aliases' && \
 postconf -e 'inet_protocols = ipv4' && \
 postconf -e 'inet_interfaces = all'
 CMD service postfix start && bash
