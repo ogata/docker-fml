@@ -19,6 +19,7 @@ expect \"TimeZone\" { send \"+0900\r\" };\
 expect \"Install the Fml system\" { send \"y\r\" };\
 expect eof;\
 "
+RUN touch /var/spool/ml/etc/aliases && postalias /var/spool/ml/etc/aliases
 USER root
 RUN cp -a /etc/postfix/main.cf /etc/postfix/main.cf-000 && \
 postconf -e 'allow_mail_to_commands = alias, forward, include' && \
